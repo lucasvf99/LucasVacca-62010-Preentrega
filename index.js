@@ -12,40 +12,21 @@ console.log(productosCapo)
 
 alert("Estos son nuestros productos: "+("\n") + productosCapo.join("\n"))
 
-//funcion  pregunta si quiere comprar 
-let confirmaCompra = confirm("¿Desea comprar algunos de estos productos?")
-let  preguntaCompra = (confirmacion)=>{
-
-        if(confirmacion){
-
-                alert("Perfecto, prosigamos ...")
-
-        }else{
-             
-            alert("Oh que pena, muchas gracias de todos modos")
-        }
-
-}
-
-preguntaCompra(confirmaCompra)
-
 //array del usuario 
 let changoUsuario = []
-//Elegir que producto 
-let eleccionCompra = prompt("¿Que producto desea comprar?")
+
+//compra
 
 function compra (elemento){
-        let estaOno = productosCapo.includes(elemento)
-         if (estaOno ){
-            changoUsuario.push(elemento)
-            alert("Compra realizada ")
-        }else if (estaOno != productosCapo.length)  {
-            alert("El producto seleccionado no existe ")
-        }
+    let estaOno = productosCapo.includes(elemento)
+     if (estaOno ){
+        changoUsuario.push(elemento)
+        alert("Compra realizada ")
+    }else if (estaOno != productosCapo.length)  {
+        alert("El producto seleccionado no existe ")
+    }
 
 }
-
-compra(eleccionCompra)
 //funcion si esta en el chango del usuario o no 
 
 const igualarProducto = (producto) =>{
@@ -58,7 +39,6 @@ const igualarProducto = (producto) =>{
 }
 
 //segunda compra 
-let otrasCompras = prompt("¿Quiere comprar algo mas ? si para continuar no para cerrar compra ")
 
 function otraCompra (bandera) {
     let pararCompra = bandera
@@ -77,36 +57,25 @@ function otraCompra (bandera) {
 
 }
 
-otraCompra(otrasCompras)
-console.log(changoUsuario)
-
-//funcion para cambiar algo del chango 
-
-
-
-
-
-
-//funcion cambio de producto 
+//logica cambio de producto 
 
 function logicaProducto (producto ){
-            let estaOno = productosCapo.includes(producto)
-            let productoCambiado = changoUsuario.indexOf(producto)
-            let eleccionProductoCambio = changoUsuario[productoCambiado]
-            let productoNuevo = prompt("Escriba el nuevo producto ")
-            let esta = productosCapo.includes(productoNuevo)
-            if(esta ){    
-                changoUsuario[productoCambiado]= productoNuevo
-                alert ("Ahora "+ eleccionProductoCambio + " es "+ productoNuevo )
-               // pararCiclo = prompt("¿Desea cambiar otro producto? Si o No para continuar")
+    let estaOno = productosCapo.includes(producto)
+    let productoCambiado = changoUsuario.indexOf(producto)
+    let eleccionProductoCambio = changoUsuario[productoCambiado]
+    let productoNuevo = prompt("Escriba el nuevo producto ")
+    let esta = productosCapo.includes(productoNuevo)
+    if(esta ){    
+        changoUsuario[productoCambiado]= productoNuevo
+        alert ("Ahora "+ eleccionProductoCambio + " es "+ productoNuevo )
+       // pararCiclo = prompt("¿Desea cambiar otro producto? Si o No para continuar")
 
-        }else{
-          alert("Este producto no es correcto intentelo de nuevo  ")
-          
+}else{
+  alert("Este producto no es correcto intentelo de nuevo  ")
+  
 
-        }
 }
-
+}
 //funcion para cambio de producto si esta o no 
 
 const estaoNo = (producto) =>{
@@ -118,12 +87,12 @@ const estaoNo = (producto) =>{
     }
 }
 
-let preguntaCambioProducto = prompt("¿Desesa cambiar algun producto ? si o no  ")
+// cambio producto 
 
 const cambioProducto = (bandera) =>{
         if(bandera == "si"){
             let pararCiclo= "si"
-            while(pararCiclo != "no" && preguntaCambioProducto !="no "){
+            while(pararCiclo != "no" ){
             let preguntaProductoCambio = prompt("¿Que producto quiere cambiar?")
             estaoNo(preguntaProductoCambio)
             pararCiclo = prompt("¿Desea cambiar otro producto? Si o no para continuar")
@@ -134,13 +103,7 @@ const cambioProducto = (bandera) =>{
         }
        
       }
-
-
-cambioProducto(preguntaCambioProducto)
-
-console.log(changoUsuario)
-
-
+      
 /////// eliminar un producto 
 
 const verificacionFinal = (producto) =>{
@@ -155,9 +118,7 @@ const verificacionFinal = (producto) =>{
     }
 }
 
-//////////
 
-let preguntaEliminarProducto = confirm("¿Desea eliminar algun producto?")
 
 const eliminarProducto = (bandera) =>{
 
@@ -179,9 +140,36 @@ const eliminarProducto = (bandera) =>{
 
 }
 
-eliminarProducto(preguntaEliminarProducto)
 
 
-console.log ( changoUsuario)
+/////// funcion  pregunta si quiere comprar  FUNCION PRINCIPAL ////////////////
+let confirmaCompra = confirm("¿Desea comprar algunos de estos productos?")
+let  preguntaCompra = (confirmacion)=>{
+
+        if(confirmacion){
+
+                alert("Perfecto, prosigamos ...")
+                let eleccionCompra = prompt("¿Que producto desea comprar?")
+                compra(eleccionCompra)
+                let otrasCompras = prompt("¿Quiere comprar algo mas ? si para continuar no para cerrar compra ")
+                otraCompra(otrasCompras)
+                let preguntaCambioProducto = prompt("¿Desesa cambiar algun producto ? si o no  ")
+                cambioProducto(preguntaCambioProducto)
+                let preguntaEliminarProducto = confirm("¿Desea eliminar algun producto?")
+                eliminarProducto(preguntaEliminarProducto)
+
+
+        }else{
+             
+            alert("Oh que pena, muchas gracias de todos modos")
+        }
+
+}
+
+preguntaCompra(confirmaCompra)
+
+
+
+console.log(changoUsuario)
 
 alert("Su compra a sido exitosa: "+  "\n" + changoUsuario +  "\n")
